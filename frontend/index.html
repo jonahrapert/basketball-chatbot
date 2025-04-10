@@ -3,25 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>College Basketball Q&A</title>
+  <title>Basketball Chatbot</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-black flex flex-col items-center justify-center min-h-screen font-sans">
-  <h1 class="text-3xl font-bold mb-6">Ask About College Basketball</h1>
-  <input id="question" class="w-full max-w-xl p-3 border rounded-lg shadow-sm" placeholder="Ask a question..." />
-  <button onclick="askQuestion()" class="mt-4 px-6 py-2 bg-black text-white rounded-lg">Ask</button>
-  <div id="response" class="mt-8 max-w-xl text-lg text-gray-700"></div>
+<body class="bg-white text-black flex flex-col items-center justify-center min-h-screen px-4">
+
+  <h1 class="text-3xl font-bold mb-6">Basketball Chatbot</h1>
+
+  <textarea id="question" class="w-full max-w-md p-4 border rounded-lg mb-4" placeholder="Ask a college basketball question..." rows="4"></textarea>
+
+  <button onclick="askQuestion()" class="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+    Ask
+  </button>
+
+  <p id="response" class="mt-6 text-lg text-center max-w-md"></p>
+
   <script>
     async function askQuestion() {
+      console.log("Ask button clicked ✅");
+
       const question = document.getElementById("question").value;
-      const res = await fetch("http://localhost:5000/ask", {
+      const res = await fetch("https://basketball-backend-1.onrender.com/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question })
       });
+
       const data = await res.json();
       document.getElementById("response").innerText = data.answer;
     }
   </script>
+
 </body>
 </html>
