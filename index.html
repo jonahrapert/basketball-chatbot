@@ -14,7 +14,8 @@
   <script>
     async function askQuestion() {
       const question = document.getElementById("question").value;
-      const res = await fetch("https://basketball-backend-1.onrender.com", {
+      const res = await fetch("const res = await fetch("https://basketball-backend-1.onrender.com/ask", {
+", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question })
